@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', '/home');
+
+Auth::routes();
+
+Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
+
+// Keranjang
+
+Route::get('/tambah-ke-keranjang/{produk}', 'App\Http\Controllers\KeranjangController@add')->name('keranjang.add')->middleware('auth');
+
+Route::get('/keranjang', 'App\Http\Controllers\KeranjangController@index')->name('keranjang.index')->middleware('auth');
+
+Route::get('/keranjang/destroy{itemId}', 'App\Http\Controllers\KeranjangController@destroy')->name('keranjang.destroy')->middleware('auth');
+
+Route::get('/keranjang/update{itemId}', 'App\Http\Controllers\KeranjangController@update')->name('keranjang.update')->middleware('auth');
