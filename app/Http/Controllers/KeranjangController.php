@@ -50,5 +50,10 @@ class KeranjangController extends Controller
         return back();
     }
 
+    public function checkout()
+    {
+        return view('keranjang.checkout');
+    }
+
 
 }

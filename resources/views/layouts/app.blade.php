@@ -42,14 +42,16 @@
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Keranjang -->
+
                         <li class="nav-item">
                             <a class="nav-link p-0 m-0" href="{{ route('keranjang.index') }}">
                                 <i class="fas fa-cart-arrow-down text-primary fa-2x"></i>
-                                Keranjang
-
                                 <div class="badge badge-danger">
-
-                                    {{Cart::session(auth()->id())->getTotalQuantity()}}
+                                    @auth
+                                        {{Cart::session(auth()->id())->getContent()->count()}}
+                                    @else
+                                        0
+                                    @endauth
                                 </div>
 
                             </a>
@@ -91,6 +93,22 @@
                 </div>
             </div>
         </nav>
+
+        {{-- Selesai Order Message --}}
+
+        @if (session()->has('message'))
+            <div class="alert alert-success" role="alert">
+                {{session('message')}}
+            </div>
+        @endif
+
+        {{-- Selesai Order Error --}}
+
+        @if (session()->has('error'))
+            <div class="alert alert-danger" role="alert">
+                {{session('error')}}
+            </div>
+        @endif
 
         <main class="py-4 container">
             @yield('content')

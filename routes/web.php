@@ -21,11 +21,23 @@ Auth::routes();
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 
 // Keranjang
+Route::group(['middleware' => 'auth'], function(){
 
-Route::get('/tambah-ke-keranjang/{produk}', 'App\Http\Controllers\KeranjangController@add')->name('keranjang.add')->middleware('auth');
+    Route::get('/tambah-ke-keranjang/{produk}', 'App\Http\Controllers\KeranjangController@add')->name('keranjang.add');
 
-Route::get('/keranjang', 'App\Http\Controllers\KeranjangController@index')->name('keranjang.index')->middleware('auth');
+    Route::get('/keranjang', 'App\Http\Controllers\KeranjangController@index')->name('keranjang.index');
 
-Route::get('/keranjang/destroy{itemId}', 'App\Http\Controllers\KeranjangController@destroy')->name('keranjang.destroy')->middleware('auth');
+    Route::get('/keranjang/destroy{itemId}', 'App\Http\Controllers\KeranjangController@destroy')->name('keranjang.destroy');
 
-Route::get('/keranjang/update{itemId}', 'App\Http\Controllers\KeranjangController@update')->name('keranjang.update')->middleware('auth');
+    Route::get('/keranjang/update{itemId}', 'App\Http\Controllers\KeranjangController@update')->name('keranjang.update');
+
+    Route::get('/keranjang/checkout', 'App\Http\Controllers\KeranjangController@checkout')->name('keranjang.checkout');
+
+});
+
+
+
+
+// Order
+
+Route::resource('orders', 'App\Http\Controllers\OrderController')->middleware('auth');

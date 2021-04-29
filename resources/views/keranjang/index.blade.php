@@ -43,7 +43,7 @@
         Total Harga : Rp.{{\Cart::session(auth()->id())->getTotal()}}
     </h3>
 
-    <a class="btn btn-primary" href="#" role="button">Bayar</a>
+    <a class="btn btn-primary" href="{{route('keranjang.checkout')}}" role="button">Lanjut Checkout</a>
 
 
 @endsection
