@@ -1,0 +1,2 @@
+Webdev iSeed
+php artisan iseed data_types,data_rows,categories,posts,pages,menus,menu_items,roles,users,user_roles,permissions,permission_role,settings

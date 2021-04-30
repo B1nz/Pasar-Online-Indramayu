@@ -1,5 +1,6 @@
 <?php
 
+use Faker\Guesser\Name;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::redirect('/', '/home');
+
+Route::redirect('/dashboard', '/home');
 
 Auth::routes();
 
@@ -36,8 +39,15 @@ Route::group(['middleware' => 'auth'], function(){
 });
 
 
-
-
 // Order
-
 Route::resource('orders', 'App\Http\Controllers\OrderController')->middleware('auth');
+
+
+// Toko
+Route::resource('/toko', 'App\Http\Controllers\TokoController')->middleware('auth');
+
+
+// Voyager
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
