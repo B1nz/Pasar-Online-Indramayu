@@ -13,4 +13,9 @@ class Toko extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function produk()
+    {
+        return $this->hasMany(Produk::class, 'toko_id');
+    }
 }

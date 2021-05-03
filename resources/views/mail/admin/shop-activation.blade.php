@@ -7,7 +7,7 @@
 Pemilik Toko : {{$shop->owner->nama}}
 Deskripsi Toko : {{$shop->deskripsi}} --}}
 
-Toko baru menanti untuk di konfirmasi!, klik button berikut untuk mengkonfirmasi!
+Toko baru menanti untuk kamu konfirmasi!, klik tombool berikut untuk mengkonfirmasi!
 
 @component('mail::button', ['url' => url('/admin/tokos')])
 Manage Shops

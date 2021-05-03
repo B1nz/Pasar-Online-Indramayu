@@ -387,6 +387,86 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => '2021-04-30 06:57:28',
                 'updated_at' => '2021-04-30 06:57:28',
             ),
+            46 => 
+            array (
+                'id' => 57,
+                'key' => 'browse_tokos',
+                'table_name' => 'tokos',
+                'created_at' => '2021-05-03 06:53:30',
+                'updated_at' => '2021-05-03 06:53:30',
+            ),
+            47 => 
+            array (
+                'id' => 58,
+                'key' => 'read_tokos',
+                'table_name' => 'tokos',
+                'created_at' => '2021-05-03 06:53:30',
+                'updated_at' => '2021-05-03 06:53:30',
+            ),
+            48 => 
+            array (
+                'id' => 59,
+                'key' => 'edit_tokos',
+                'table_name' => 'tokos',
+                'created_at' => '2021-05-03 06:53:30',
+                'updated_at' => '2021-05-03 06:53:30',
+            ),
+            49 => 
+            array (
+                'id' => 60,
+                'key' => 'add_tokos',
+                'table_name' => 'tokos',
+                'created_at' => '2021-05-03 06:53:30',
+                'updated_at' => '2021-05-03 06:53:30',
+            ),
+            50 => 
+            array (
+                'id' => 61,
+                'key' => 'delete_tokos',
+                'table_name' => 'tokos',
+                'created_at' => '2021-05-03 06:53:30',
+                'updated_at' => '2021-05-03 06:53:30',
+            ),
+            51 => 
+            array (
+                'id' => 62,
+                'key' => 'browse_produks',
+                'table_name' => 'produks',
+                'created_at' => '2021-05-03 06:54:56',
+                'updated_at' => '2021-05-03 06:54:56',
+            ),
+            52 => 
+            array (
+                'id' => 63,
+                'key' => 'read_produks',
+                'table_name' => 'produks',
+                'created_at' => '2021-05-03 06:54:56',
+                'updated_at' => '2021-05-03 06:54:56',
+            ),
+            53 => 
+            array (
+                'id' => 64,
+                'key' => 'edit_produks',
+                'table_name' => 'produks',
+                'created_at' => '2021-05-03 06:54:56',
+                'updated_at' => '2021-05-03 06:54:56',
+            ),
+            54 => 
+            array (
+                'id' => 65,
+                'key' => 'add_produks',
+                'table_name' => 'produks',
+                'created_at' => '2021-05-03 06:54:56',
+                'updated_at' => '2021-05-03 06:54:56',
+            ),
+            55 => 
+            array (
+                'id' => 66,
+                'key' => 'delete_produks',
+                'table_name' => 'produks',
+                'created_at' => '2021-05-03 06:54:56',
+                'updated_at' => '2021-05-03 06:54:56',
+            ),
         ));
         
         

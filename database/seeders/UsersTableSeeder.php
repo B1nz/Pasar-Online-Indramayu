@@ -37,6 +37,42 @@ class UsersTableSeeder extends Seeder
                 'created_at' => '2021-04-30 06:37:19',
                 'updated_at' => '2021-04-30 06:37:19',
             ),
+            1 => 
+            array (
+                'id' => 2,
+                'role_id' => 3,
+                'name' => 'user',
+                'email' => 'user@mail.com',
+                'avatar' => 'users/default.png',
+                'email_verified_at' => NULL,
+                'password' => '$2y$10$H35CmfHos46NiO9yv5q1D./xpGSEAa4PaoZPpA0AiOwSn5wstg/Ka',
+                'two_factor_secret' => NULL,
+                'two_factor_recovery_codes' => NULL,
+                'remember_token' => NULL,
+                'settings' => '{"locale":"en"}',
+                'current_team_id' => NULL,
+                'profile_photo_path' => NULL,
+                'created_at' => '2021-05-03 06:50:36',
+                'updated_at' => '2021-05-03 07:04:44',
+            ),
+            2 => 
+            array (
+                'id' => 3,
+                'role_id' => 2,
+                'name' => 'user2',
+                'email' => 'user2@mail.com',
+                'avatar' => 'users/default.png',
+                'email_verified_at' => NULL,
+                'password' => '$2y$10$op/Ry2DVSpCIBH7LAO2bneiU4U2Fq5M7ou0hOd1U7yHW4rSS1sz9a',
+                'two_factor_secret' => NULL,
+                'two_factor_recovery_codes' => NULL,
+                'remember_token' => 'Zwf7sZhIeIlycWJDfVtnP6jOiy6tF7KmCnKs8dpU4SKLAXr19XveNGumNhHh',
+                'settings' => NULL,
+                'current_team_id' => NULL,
+                'profile_photo_path' => NULL,
+                'created_at' => '2021-05-03 07:03:16',
+                'updated_at' => '2021-05-03 07:03:16',
+            ),
         ));
         
         

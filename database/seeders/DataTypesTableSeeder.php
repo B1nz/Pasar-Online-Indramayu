@@ -145,6 +145,42 @@ class DataTypesTableSeeder extends Seeder
                 'created_at' => '2021-04-30 06:57:28',
                 'updated_at' => '2021-04-30 08:19:11',
             ),
+            7 => 
+            array (
+                'id' => 12,
+                'name' => 'tokos',
+                'slug' => 'tokos',
+                'display_name_singular' => 'Toko',
+                'display_name_plural' => 'Tokos',
+                'icon' => 'voyager-shop',
+                'model_name' => 'App\\Models\\Toko',
+                'policy_name' => 'App\\Policies\\TokoPolicy',
+                'controller' => 'App\\Http\\Controllers\\Admin\\TokoController',
+                'description' => NULL,
+                'generate_permissions' => 1,
+                'server_side' => 0,
+                'details' => '{"order_column":null,"order_display_column":null,"order_direction":"asc","default_search_key":null,"scope":null}',
+                'created_at' => '2021-05-03 06:53:30',
+                'updated_at' => '2021-05-03 07:09:15',
+            ),
+            8 => 
+            array (
+                'id' => 14,
+                'name' => 'produks',
+                'slug' => 'produks',
+                'display_name_singular' => 'Produk',
+                'display_name_plural' => 'Produks',
+                'icon' => 'voyager-bag',
+                'model_name' => 'App\\Models\\Produk',
+                'policy_name' => NULL,
+                'controller' => NULL,
+                'description' => NULL,
+                'generate_permissions' => 1,
+                'server_side' => 0,
+                'details' => '{"order_column":null,"order_display_column":null,"order_direction":"asc","default_search_key":null}',
+                'created_at' => '2021-05-03 06:54:56',
+                'updated_at' => '2021-05-03 06:54:56',
+            ),
         ));
         
         

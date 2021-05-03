@@ -65,7 +65,7 @@ class TokoController extends Controller
      */
     public function show(Toko $toko)
     {
-        //
+        dd($toko->owner->nama. 'selamat datang', $toko->nama);
     }
 
     /**

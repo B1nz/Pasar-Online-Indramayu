@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Toko;
+use App\Observers\TokoObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Toko::observe(TokoObserver::class);
     }
 }
