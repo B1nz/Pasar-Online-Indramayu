@@ -21,7 +21,7 @@ class KeranjangController extends Controller
             'associatedModel' => $produk
         ));
 
-        return redirect()->route('keranjang.index');
+        return back();
     }
 
     public function index()
@@ -52,7 +52,9 @@ class KeranjangController extends Controller
 
     public function checkout()
     {
-        return view('keranjang.checkout');
+        $keranjangItems = \Cart::session(auth()->id())->getContent();
+
+        return view('keranjang.checkout', compact('keranjangItems'));
     }
 
 

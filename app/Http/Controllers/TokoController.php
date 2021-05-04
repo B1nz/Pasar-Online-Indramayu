@@ -28,7 +28,9 @@ class TokoController extends Controller
      */
     public function create()
     {
-        return view('toko.create');
+        $keranjangItems = \Cart::session(auth()->id())->getContent();
+
+        return view('toko.create', compact('keranjangItems'));
     }
 
     /**
@@ -39,6 +41,7 @@ class TokoController extends Controller
      */
     public function store(Request $request)
     {
+
         // Save to db
         $toko = auth()->user()->toko()->create([
             'nama' => $request->input('nama'),

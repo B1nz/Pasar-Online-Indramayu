@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Produk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -24,8 +25,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $produks = Produk::take(20)->get();
+        if (Auth::guest()) {
+            $keranjangItems =  \Cart::session(auth()->guest())->getContent();
+        } else {
+            $keranjangItems = \Cart::session(auth()->id())->getContent();
+        }
 
-        return view('home', ['allProduk' => $produks]);
+        $produks = Produk::take(8)->get();
+
+        return view('home', ['allProduk' => $produks], compact('keranjangItems'));
     }
 }

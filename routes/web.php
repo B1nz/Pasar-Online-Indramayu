@@ -44,7 +44,7 @@ Route::resource('orders', 'App\Http\Controllers\OrderController')->middleware('a
 
 
 // Toko
-Route::resource('/toko', 'App\Http\Controllers\TokoController')->middleware('auth');
+Route::resource('toko', 'App\Http\Controllers\TokoController')->middleware('auth');
 
 
 // Voyager
