@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 
 class ProdukController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +16,23 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        //
+        $keranjangItems = \Cart::session(auth()->id())->getContent();
+
+        $categoryId = request('category_id');
+        $categoryName = null;
+
+        if($categoryId){
+            $category = Category::find($categoryId);
+            $categoryName = ucfirst($category->name);
+
+            // $produks = $category->produks;
+            $produks = $category->allProducts();
+        }else{
+            $produks = Produk::take(10)->get();
+        }
+
+
+        return view('produk.index', compact('keranjangItems', 'produks', 'categoryName'));
     }
 
     /**
@@ -46,7 +64,7 @@ class ProdukController extends Controller
      */
     public function show(Produk $produk)
     {
-        //
+        return view('produk.show', compact('produk'));
     }
 
     /**

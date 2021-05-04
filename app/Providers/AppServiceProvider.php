@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Models\Toko;
+use App\Models\Category;
 use App\Observers\TokoObserver;
+use TCG\Voyager\Facades\Voyager;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        Voyager::useModel('Category', \App\Models\Category::class);
     }
 
     /**

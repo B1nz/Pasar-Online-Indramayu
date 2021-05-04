@@ -11,32 +11,17 @@
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
 
     <!-- all css here -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="assets/css/animate.css">
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/css/themify-icons.css">
-    <link rel="stylesheet" href="assets/css/pe-icon-7-stroke.css">
-    <link rel="stylesheet" href="assets/css/icofont.css">
-    <link rel="stylesheet" href="assets/css/meanmenu.min.css">
-    <link rel="stylesheet" href="assets/css/bundle.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
-    <link rel="stylesheet" href="public/assets/css/animate.css">
-    <link rel="stylesheet" href="public/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="public/assets/css/bundle.css">
-    <link rel="stylesheet" href="public/assets/css/easyzoom.css">
-    <link rel="stylesheet" href="public/assets/css/hamburgers.min.css">
-    <link rel="stylesheet" href="public/assets/css/icofont.css">
-    <link rel="stylesheet" href="public/assets/css/jquery-ui.css">
-    <link rel="stylesheet" href="public/assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="public/assets/css/meanmenu.min.css">
-    <link rel="stylesheet" href="public/assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="public/assets/css/pe-icon-7-stroke.css">
-    <link rel="stylesheet" href="public/assets/css/responsive.css">
-    <link rel="stylesheet" href="public/assets/css/slinky.min.css">
-    <link rel="stylesheet" href="public/assets/css/style.css">
-    <link rel="stylesheet" href="public/assets/css/themeify-icons.css">
+    <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/magnific-popup.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/animate.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/themify-icons.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/pe-icon-7-stroke.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/icofont.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/meanmenu.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/bundle.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
@@ -97,7 +82,7 @@
             <div class="header-bottom-wrapper pr-200 pl-200">
                 <div class="logo-3">
                     <a href="{{route('home')}}">
-                        <img src="assets/img/logo/logo-3.png" alt="">
+                        <img src="{{asset('assets/img/logo/logo-3.png')}}" alt="">
                     </a>
                 </div>
                 <div class="categories-search-wrapper categories-search-wrapper2">
@@ -142,7 +127,13 @@
 
                         <li class="single-product-cart">
                             <div class="cart-img">
-                                <a href="#"><img src="assets/img/cart/1.jpg" alt=""></a>
+                                <span>
+                                    @if(!empty($item->cover_img))
+                                        <img src="{{asset('storage/'.$item->cover_img)}}" alt="">
+                                    @else
+                                        <img src="assets/img/cart/1.jpg" alt="">
+                                    @endif
+                                </span>
                             </div>
                             <div class="cart-title">
                                 <h5><a href="#">{{ $item->name }}</a></h5>
@@ -154,6 +145,7 @@
                         </li>
 
                         @endforeach
+
                         <li class="cart-space">
                             <div class="cart-sub">
                                 <h4>Subtotal</h4>

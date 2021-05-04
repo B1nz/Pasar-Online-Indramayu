@@ -46,6 +46,9 @@ Route::resource('orders', 'App\Http\Controllers\OrderController')->middleware('a
 // Toko
 Route::resource('toko', 'App\Http\Controllers\TokoController')->middleware('auth');
 
+// Produk
+Route::resource('produk', 'App\Http\Controllers\ProdukController');
+
 
 // Voyager
 Route::group(['prefix' => 'admin'], function () {
