@@ -3,6 +3,8 @@
 
 @section('content')
 
+@include('layouts.line')
+
     <!-- shopping-cart-area start -->
     <div class="cart-main-area pt-95 pb-100">
         <div class="container">

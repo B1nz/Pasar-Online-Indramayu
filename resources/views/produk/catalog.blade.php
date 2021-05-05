@@ -7,10 +7,10 @@
 <div class="breadcrumb-area pt-205 breadcrumb-padding pb-210" style="background-image: url(/assets/img/bg/breadcrumb.jpg)">
     <div class="container-fluid">
         <div class="breadcrumb-content text-center">
-            <h2> kategori</h2>
+            <h2> Belanja</h2>
             <ul>
                 <li><a href="{{url('/')}}">home</a></li>
-                <li>ketegori</li>
+                <li>search</li>
             </ul>
         </div>
     </div>
@@ -64,7 +64,7 @@
                         <div class="shop-bar pb-60">
                             <div class="shop-found-selector">
                                 <div class="shop-found">
-                                    <p>Menampilkan Hasil Untuk Kategori <span>{{ $categoryName ?? null }}</span></p>
+                                    <p><span>{{$produks->total()}}</span> Produk Ditemukan</p>
                                 </div>
                             </div>
                         </div>
@@ -81,10 +81,11 @@
                         </div>
                     </div>
                 </div>
-                {{-- {{$produks->render()}} --}}
+                {{$produks->appends(['query'=>request('query')])->render()}}
             </div>
         </div>
     </div>
 </div>
+
 
 @endsection

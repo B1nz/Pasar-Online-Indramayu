@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Produk;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 
 class ProdukController extends Controller
 {
@@ -16,6 +17,8 @@ class ProdukController extends Controller
      */
     public function index()
     {
+        Paginator::useBootstrap();
+
         $keranjangItems = \Cart::session(auth()->id())->getContent();
 
         $categoryId = request('category_id');
@@ -25,14 +28,15 @@ class ProdukController extends Controller
             $category = Category::find($categoryId);
             $categoryName = ucfirst($category->name);
 
-            // $produks = $category->produks;
             $produks = $category->allProducts();
         }else{
             $produks = Produk::take(10)->get();
         }
 
+        $categories = Category::whereNull('parent_id')->get();
 
-        return view('produk.index', compact('keranjangItems', 'produks', 'categoryName'));
+
+        return view('produk.index', compact('keranjangItems', 'produks', 'categoryName'), ['categories' => $categories]);
     }
 
     /**
@@ -64,40 +68,23 @@ class ProdukController extends Controller
      */
     public function show(Produk $produk)
     {
-        return view('produk.show', compact('produk'));
+        $keranjangItems = \Cart::session(auth()->id())->getContent();
+
+        return view('produk.show', compact('produk','keranjangItems'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Produk  $produk
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Produk $produk)
+    public function search(Request $request)
     {
-        //
-    }
+        Paginator::useBootstrap();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Produk  $produk
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Produk $produk)
-    {
-        //
-    }
+        $keranjangItems = \Cart::session(auth()->id())->getContent();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Produk  $produk
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Produk $produk)
-    {
-        //
+        $query = $request->input('query');
+
+        $produks = Produk::where('nama','LIKE',"%$query%")->paginate(16);
+
+        $categories = Category::whereNull('parent_id')->get();
+
+        return view('produk.catalog', compact('produks','keranjangItems'), ['categories' => $categories]);
     }
 }

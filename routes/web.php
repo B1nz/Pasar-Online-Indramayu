@@ -47,6 +47,8 @@ Route::resource('orders', 'App\Http\Controllers\OrderController')->middleware('a
 Route::resource('toko', 'App\Http\Controllers\TokoController')->middleware('auth');
 
 // Produk
+Route::get('/produk/search', 'App\Http\Controllers\ProdukController@search')->name('produk.search');
+Route::get('/produk/show', 'App\Http\Controllers\ProdukController@show')->name('produk.show');
 Route::resource('produk', 'App\Http\Controllers\ProdukController');
 
 

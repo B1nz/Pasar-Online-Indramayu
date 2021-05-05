@@ -3,6 +3,8 @@
 
 @section('content')
 
+@include('layouts.line')
+
     <div class="checkout-area ptb-100">
         <div class="container">
             <div class="row">
