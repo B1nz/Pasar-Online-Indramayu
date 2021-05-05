@@ -2,6 +2,14 @@
 
 @section('content')
 
+@if (\Session::has('msg'))
+    <div class="alert alert-success">
+        <ul>
+            <li>{!! \Session::get('msg') !!}</li>
+        </ul>
+    </div>
+@endif
+
 <div class="categori-menu-wrapper2 clearfix">
     <div class="pl-200 pr-200">
         <div class="categori-style-2">

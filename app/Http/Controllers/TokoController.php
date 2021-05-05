@@ -56,7 +56,8 @@ class TokoController extends Controller
 
         Mail::to($admins)->send(new ShopActivationRequest($toko));
 
-        return redirect()->route('home')->withMessage('Pengajuan Membuka Toko Terkirim!');
+        // return redirect()->route('home')->withMessage('Pengajuan Membuka Toko Terkirim!');
+        return redirect()->route('home')->with('msg','Pengajuan Membuka Toko Terkirim!');
 
     }
 

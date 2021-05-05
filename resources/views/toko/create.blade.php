@@ -1,21 +1,65 @@
 @extends('layouts.front')
 
 @section('content')
-<h2>Daftarkan Toko Anda!</h2>
 
-    <form action="{{route('toko.store')}}" method="POST">
-        @csrf
-        <div class="form-group">
-            <label for="nama">Nama Toko</label>
-            <input type="text" class="form-control" name="nama" id="" aria-describedby="helpId" placeholder="" required>
+@include('layouts.line')
+
+    <div class="breadcrumb-area pt-205 pb-210" style="background-image: url(/assets/img/bg/breadcrumb.jpg)">
+        <div class="container">
+            <div class="breadcrumb-content text-center">
+                <h2>Daftar Toko</h2>
+                <ul>
+                    <li><a href="{{url('/')}}">home</a></li>
+                    <li> daftar </li>
+                </ul>
+            </div>
         </div>
+    </div>
 
-        <div class="form-group">
-            <label for="deskripsi">Deskripsi Toko</label>
-            <textarea class="form-control" name="deskripsi" id="" rows="3" placeholder="Jelaskan secara jelas tentang toko anda! Tidak diwajibkan untuk memiliki toko fisik" required></textarea>
+    {{-- Catatan area --}}
+    <div class="register-area ptb-100">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 col-12 col-lg-12 col-xl-6 ml-auto mr-auto">
+                    <div class="login">
+                        <h3>Catatan :</h3>
+                        <p>● Toko anda akan melalui tahap seleksi demi menjaga dari adanya toko palsu</p>
+                        <p>● Jika toko anda sudah aktif maka anda akan mendapatkan email notifikasi bahwa toko sudah aktif dan dapat digunakan</p>
+                        <p>● Jika anda sudah memiliki toko asli silahkan masukkan nama sesuai dengan nama toko anda</p>
+                        <p>● Pastikan anda menjelaskan tentang toko anda pada kolom deskripsi</p>
+                        <p>● Anda dapat memasukkan alamatyang dapat dihubungi pada kolom deskripsi</p>
+                        <p>● Anda dapat memasukkan kontak yang dapat dihubungi pada kolom deskripsi</p>
+                        <p>● Jenis transaksi yang digunakan sementara ini yaitu Cash on Delivery, dimana pembayaran akan dilakukan pada saat pengantaran barang</p>
+                        <p>● Jenis transaksi selain Cash on Delivery seperti transfer tidak kami batasi dan dapat dilakukan diluar aplikasi ini</p>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    </div>
+    <!-- register-area start -->
+    <div class="register-area ptb-100">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 col-12 col-lg-12 col-xl-6 ml-auto mr-auto">
+                    <div class="login">
+                        <h3>Form Daftar Toko</h3>
+                        <div class="login-form-container">
+                            <div class="login-form">
+                                <form action="{{route('toko.store')}}" method="post">
+                                    @csrf
+                                    <input type="text" name="nama" placeholder="Nama Toko" required>
+                                    <input type="text" name="deskripsi" placeholder="Deskripsi Toko" required>
+                                    <div class="button-box">
+                                        <button type="submit" class="default-btn floatright">Daftar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- register-area end -->
 
 @endsection
