@@ -8,44 +8,38 @@
     <div class="checkout-area ptb-100">
         <div class="container">
             <div class="row">
-                {{-- <form action="{{route('orders.store')}}" class="row">
-                @csrf --}}
+                <form action="{{route('orders.store')}}" class="row" method="POST">
+                @csrf
                     <div class="col-lg-6 col-md-12 col-12">
-                        <form action="{{route('orders.store')}}">
-                            @csrf
-                            <div class="checkbox-form">
-                                <h3>Detail Pengiriman</h3>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="checkout-form-list">
-                                            <label>Nama Penerima <span class="required">*</span></label>
-                                            <input type="text" name="nama_penerima" id="name" class="form-control" required autocomplete="name">
-                                        </div>
+                        <div class="checkbox-form">
+                            <h3>Detail Pengiriman</h3>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list">
+                                        <label>Nama Penerima <span class="required">*</span></label>
+                                        <input type="text" name="nama_penerima" id="name" class="form-control" required autocomplete="name">
                                     </div>
-                                    <div class="col-md-12">
-                                        <div class="checkout-form-list">
-                                            <label>Alamat Penerima <span class="required">*</span></label>
-                                            <input type="text" name="alamat_penerima" id="" class="form-control" required autocomplete="address">
-                                        </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list">
+                                        <label>Alamat Penerima <span class="required">*</span></label>
+                                        <input type="text" name="alamat_penerima" id="" class="form-control" required autocomplete="address">
                                     </div>
-                                    <div class="col-md-12">
-                                        <div class="checkout-form-list">
-                                            <label>Telepon Penerima <span class="required">*</span></label>
-                                            <input type="number" name="telp_penerima" id="" class="form-control" required autocomplete="phone">
-                                        </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list">
+                                        <label>Telepon Penerima <span class="required">*</span></label>
+                                        <input type="number" name="telp_penerima" id="" class="form-control" required autocomplete="phone">
                                     </div>
-                                    <div class="col-md-12">
-                                        <div class="checkout-form-list">
-                                            <label>Keterangan Catatan</label>
-                                            <input type="text" name="keterangan" id="" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="order-button-payment col-md-12">
-                                        <input type="submit" value="Proses order" />
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list">
+                                        <label>Keterangan Catatan</label>
+                                        <input type="text" name="keterangan" id="" class="form-control">
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                     <div class="col-lg-6 col-md-12 col-12">
                         <div class="your-order">
@@ -99,7 +93,7 @@
                             </div>
                         </div>
                     </div>
-                {{-- </form> --}}
+                </form>
             </div>
         </div>
     </div>

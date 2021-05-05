@@ -114,7 +114,7 @@
                         @foreach ($keranjangItems as $item)
 
                         <li class="single-product-cart">
-                            <div class="cart-img">
+                            {{-- <div class="cart-img">
                                 <span>
                                     @if(!empty($item->cover_img))
                                         <img src="{{asset('storage/'.$item->cover_img)}}" alt="">
@@ -122,9 +122,9 @@
                                         <img src="assets/img/cart/1.jpg" alt="">
                                     @endif
                                 </span>
-                            </div>
+                            </div> --}}
                             <div class="cart-title">
-                                <h5><a href="#">{{ $item->name }}</a></h5>
+                                <h5><a href="{{route('produk.show', $produk)}}">{{ $item->name }}</a></h5>
                                 <span>Rp. {{ $item->price }} x {{ $item->quantity }}</span>
                             </div>
                             <div class="cart-delete">

@@ -45,7 +45,7 @@ class OrderController extends Controller
 
         $order = new Order();
 
-        $order->order_no = uniqid('OrderNumber-');
+        $order->order_no = uniqid('OrderPasarNo-');
 
         $order->nama_penerima = $request->input('nama_penerima');
         $order->alamat_penerima = $request->input('alamat_penerima');
