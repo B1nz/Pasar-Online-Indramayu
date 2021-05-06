@@ -59,7 +59,7 @@
                                                 {{ $item->name }} <strong class="product-quantity"> × {{ $item->quantity }}</strong>
                                             </td>
                                             <td class="product-total">
-                                                <span class="amount">Rp.{{Cart::session(auth()->id())->get($item->id)->getPriceSum()}}</span>
+                                                <span class="amount">@currency(\Cart::session(auth()->id())->get($item->id)->getPriceSum())</span>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -67,7 +67,7 @@
                                     <tfoot>
                                         <tr class="cart-subtotal">
                                             <th>Subtotal</th>
-                                            <td><span class="amount">Rp.{{\Cart::session(auth()->id())->getTotal()}}</span></td>
+                                            <td><span class="amount">@currency(\Cart::session(auth()->id())->getTotal())</span></td>
                                         </tr>
                                     </tfoot>
                                 </table>

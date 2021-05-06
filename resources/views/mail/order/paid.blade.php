@@ -16,7 +16,7 @@
             <tr>
                 <td scope="row">{{ $item->nama }}</td>
                 <td>{{$item->pivot->jumlah}}</td>
-                <td>{{$item->pivot->harga}}</td>
+                <td>@currency($item->pivot->harga)</td>
             </tr>
         @endforeach
     </tbody>

@@ -22,6 +22,7 @@
             <div class="col-lg-3">
                 <div class="shop-sidebar mr-50">
                     <div class="sidebar-widget mb-45">
+                        <a href="{{route('produk.search')}}"><h3 class="sidebar-title">Semua Produk</h3></a>
                         <h3 class="sidebar-title">Kategori</h3>
                         <div class="sidebar-categories">
                             <ul>

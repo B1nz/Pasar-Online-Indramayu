@@ -31,6 +31,7 @@
                         <p>● Anda dapat memasukkan kontak yang dapat dihubungi pada kolom deskripsi</p>
                         <p>● Jenis transaksi yang digunakan sementara ini yaitu Cash on Delivery, dimana pembayaran akan dilakukan pada saat pengantaran barang</p>
                         <p>● Jenis transaksi selain Cash on Delivery seperti transfer tidak kami batasi dan dapat dilakukan diluar aplikasi ini</p>
+                        <p>● Jasa pengiriman ditanggung oleh pihak penjual dan pembeli, kami tidak menyediakan jasa pengriman</p>
                     </div>
                 </div>
             </div>

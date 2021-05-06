@@ -23,7 +23,7 @@
                 <div class="product-details-content">
                     <h3>{{$produk->nama}}</h3>
                     <div class="details-price">
-                        <span>Rp. {{$produk->harga}}</span>
+                        <span> @currency($produk->harga)</span>
                     </div>
                     <p>{!! $produk->deskripsi !!}</p>
 
@@ -54,6 +54,18 @@
                             <li><a href="#">jewellery</a></li>
                         </ul>
                     </div>
+                    <br><br>
+
+                    @if (!empty($produk->toko->nama))
+                        <h3>Info Penjual</h3> <br><br>
+                        <h4>Nama Toko:</h4> <br>
+                        <h5>{{$produk->toko->nama}}</h5> <br> <br>
+                        <h4>Informasi Tentang Toko:</h4><br>
+                        <h5>{{$produk->toko->deskripsi}}</h5>
+                    @else
+                        <h5>-</h5>
+                    @endif
+
                 </div>
             </div>
         </div>

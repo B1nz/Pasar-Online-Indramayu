@@ -9200,7 +9200,7 @@ a.bundle-btn {
     position: relative;
 }
 .fruits-top-seller-area:before {
-    content: url(../../assets/img/banner/12.png);
+    content: url(../../assets/img/banner/31.png);
     position: absolute;
     left: 0;
     top: 0px;
@@ -9208,7 +9208,7 @@ a.bundle-btn {
     z-index: -1;
 }
 .fruits-top-seller-area:after {
-    content: url(../../assets/img/banner/13.png);
+    content: url(../../assets/img/banner/32.png);
     position: absolute;
     right: 0;
     bottom: 0;

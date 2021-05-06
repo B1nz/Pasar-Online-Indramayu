@@ -27,7 +27,13 @@ class HomeController extends Controller
     public function index()
     {
 
-        $produks = Produk::take(8)->get();
+        $produksRndm = Produk::inRandomOrder()->limit(5)->get();
+
+        $produksFrst = Produk::inRandomOrder()->limit(3)->get();
+
+        $produkFresh = Produk::orderBy('created_at', 'desc')->paginate(5);
+
+        $produkUpdtd = Produk::orderBy('updated_at', 'desc')->paginate(8);
 
         if (Auth::guest()) {
             $keranjangItems =  \Cart::session(auth()->guest())->getContent();
@@ -36,6 +42,7 @@ class HomeController extends Controller
         }
 
         $categories = Category::whereNull('parent_id')->get();
-        return view('home', ['allProduk' => $produks,'categories' => $categories], compact('keranjangItems'));
+
+        return view('home', ['freshProduk' => $produkFresh, 'firstProduk' => $produksFrst,'categories' => $categories, 'rndmProduk' => $produksRndm, 'updtdProduk' => $produkUpdtd], compact('keranjangItems'));
     }
 }

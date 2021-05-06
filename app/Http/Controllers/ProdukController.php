@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Produk;
 use App\Models\Category;
+use App\Models\Toko;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 
@@ -15,6 +16,9 @@ class ProdukController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public $keranjangItems = [];
+
     public function index()
     {
         Paginator::useBootstrap();
@@ -81,7 +85,7 @@ class ProdukController extends Controller
 
         $query = $request->input('query');
 
-        $produks = Produk::where('nama','LIKE',"%$query%")->paginate(16);
+        $produks = Produk::where('nama','LIKE',"%$query%")->paginate(20);
 
         $categories = Category::whereNull('parent_id')->get();
 

@@ -20,7 +20,7 @@
         <div class="product-content-4 text-center">
             <h4><a href="{{route('produk.show', $produk)}}">{{$produk->nama}}</a></h4>
             <p> {{$produk->deskripsi}} </p>
-            <h5>Rp. {{$produk->harga}}</h5>
+            <h5>@currency($produk->harga)</h5>
             <p> {{$produk->shop->owner->name ?? null}} </p>
         </div>
     </div>
