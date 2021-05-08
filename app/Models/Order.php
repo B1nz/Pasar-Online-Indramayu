@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Toko;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Order extends Model
 {
@@ -17,13 +18,13 @@ class Order extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function getShippingFullAddressAttribute()
     {
 
-        return  $this->shipping_fullname."<br>".$this->shipping_address . ', ' . $this->shipping_city . ', ' . $this->shipping_state . ', ' . $this->shipping_zipcode . "<br> phone: " . $this->shipping_phone;
+        return  $this->nama_penerima."<br>".$this->alamat_penerima . "<br> phone: " . $this->telp_penerima;
     }
 
     public function subOrders()
@@ -35,19 +36,19 @@ class Order extends Model
     {
         $orderItems = $this->items;
 
-        foreach($orderItems->groupBy('shop_id') as $shopId => $products) {
+        foreach($orderItems->groupBy('toko_id') as $tokoId => $produks) {
 
-            $shop = Shop::find($shopId);
+            $toko = Toko::find($tokoId);
 
             $suborder = $this->subOrders()->create([
                 'order_id'=> $this->id,
-                'seller_id'=> $shop->user_id ?? 1,
-                'grand_total'=> $products->sum('pivot.price'),
-                'item_count'=> $products->count()
+                'toko_id'=> $toko->id,
+                'grand_total'=> $produks->sum('pivot.harga'),
+                'item_count'=> $produks->count()
             ]);
 
-            foreach($products as $product) {
-                $suborder->items()->attach($product->id, ['price' => $product->pivot->price, 'quantity' => $product->pivot->quantity]);
+            foreach($produks as $produk) {
+                $suborder->items()->attach($produk->id, ['harga' => $produk->pivot->harga, 'jumlah' => $produk->pivot->jumlah]);
             }
 
         }

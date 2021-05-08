@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Order;
+use App\Test;
 use Faker\Guesser\Name;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -51,8 +53,21 @@ Route::get('/produk/search', 'App\Http\Controllers\ProdukController@search')->na
 Route::get('/produk/show', 'App\Http\Controllers\ProdukController@show')->name('produk.show');
 Route::resource('produk', 'App\Http\Controllers\ProdukController');
 
+// Pedagang
+Route::group(['prefix' => 'seller', 'middleware' => 'auth', 'as' => 'seller.', 'namespace' => 'App\Http\Controllers\Seller'], function() {
+    Route::redirect('/', 'seller/orders');
+    Route::resource('/orders', 'OrderController');
+    Route::get('orders/delivered/{suborder}', 'OrderController@markDelivered')->name('order.delivered');
+});
 
 // Voyager
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
+});
+
+// Test
+Route::get('/test', function () {
+    $o = Order::find(10);
+
+    dd($o->groupBy('toko_id'));
 });

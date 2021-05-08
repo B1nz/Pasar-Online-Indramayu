@@ -71,16 +71,16 @@ class OrderController extends Controller
 
         Mail::to($order->user->email)->send(new OrderBerhasil($order));
 
+        // Generate SubOrder
+        $order->generateSubOrders();
+
         // Empty Cart
 
         \Cart::session(auth()->id())->clear();
 
         // Take user to thank you
 
-        return redirect()->route('home')->withMessage('Pesanan Berhasil Dibuat!');
-
-
-
+        return redirect()->route('home')->with('suksesMsg','Order Berhasil!');
     }
 
     /**

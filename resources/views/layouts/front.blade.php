@@ -38,8 +38,19 @@
             <div class="header-info-wrapper pl-200 pr-200">
                 <div class="header-contact-info header-contact-info2 ">
                     <ul>
-                        <li><i class="pe-7s-shopbag"></i> <a href="{{url('/admin')}}">Masuk Sebagai Penjual</a></li>
+                        @guest
                         <li><i class="pe-7s-cash"></i> <a href="{{ route('toko.create') }}">Mulai Berjualan!</a></li>
+                        @else
+                            @if (auth()->user()->role_id == '1')
+                            <li><i class="pe-7s-shopbag"></i> <a href="{{url('/seller/orders')}}">Masuk Sebagai Penjual</a></li>
+                            <li><i class="pe-7s-cash"></i> <a href="{{ route('toko.create') }}">Mulai Berjualan!</a></li>
+                            @elseif (auth()->user()->role_id == '3')
+                            <li><i class="pe-7s-shopbag"></i> <a href="{{url('/seller/orders')}}">Masuk Sebagai Penjual</a></li>
+                            <li><i class="pe-7s-cash"></i> <a href="{{ route('toko.create') }}">Mulai Berjualan!</a></li>
+                            @else
+                            <li><i class="pe-7s-cash"></i> <a href="{{ route('toko.create') }}">Mulai Berjualan!</a></li>
+                            @endif
+                        @endguest
                     </ul>
                 </div>
                 <div class="electronics-login-register">
@@ -48,7 +59,7 @@
                         @guest
                             @if (Route::has('login'))
                                 <li>
-                                    <a class="nav-link" href="{{ route('login') }}"><i class="pe-7s-users"></i>{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}" style="font-weight: bold"><i class="pe-7s-users"></i>{{ __('Login') }}</a>
                                 </li>
                             @endif
 
@@ -65,9 +76,18 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                                    @if (auth()->user()->role_id == '1')
                                     <a class="dropdown-item " href="{{url('/admin')}}">
                                         {{ __('Masuk Penjual') }}
                                     </a>
+                                    @elseif (auth()->user()->role_id == '3')
+                                    <a class="dropdown-item " href="{{url('/admin')}}">
+                                        {{ __('Masuk Penjual') }}
+                                    </a>
+                                    @else
+
+                                    @endif
 
                                     <a class="dropdown-item " href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
