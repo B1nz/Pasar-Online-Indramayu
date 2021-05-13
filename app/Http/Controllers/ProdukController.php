@@ -23,8 +23,6 @@ class ProdukController extends Controller
     {
         Paginator::useBootstrap();
 
-        $keranjangItems = \Cart::session(auth()->id())->getContent();
-
         $categoryId = request('category_id');
         $categoryName = null;
 
@@ -40,7 +38,7 @@ class ProdukController extends Controller
         $categories = Category::whereNull('parent_id')->get();
 
 
-        return view('produk.index', compact('keranjangItems', 'produks', 'categoryName'), ['categories' => $categories]);
+        return view('produk.index', compact('produks', 'categoryName'), ['categories' => $categories]);
     }
 
     /**
@@ -72,16 +70,14 @@ class ProdukController extends Controller
      */
     public function show(Produk $produk)
     {
-        $keranjangItems = \Cart::session(auth()->id())->getContent();
+        $categories = Category::whereNull('parent_id')->get();
 
-        return view('produk.show', compact('produk','keranjangItems'));
+        return view('produk.show', compact('produk','categories'));
     }
 
     public function search(Request $request)
     {
         Paginator::useBootstrap();
-
-        $keranjangItems = \Cart::session(auth()->id())->getContent();
 
         $query = $request->input('query');
 
@@ -89,6 +85,12 @@ class ProdukController extends Controller
 
         $categories = Category::whereNull('parent_id')->get();
 
-        return view('produk.catalog', compact('produks','keranjangItems'), ['categories' => $categories]);
+        return view('produk.catalog', compact('produks'), ['categories' => $categories]);
+    }
+
+    public function pangan()
+    {
+
+        return view('produk.pihps');
     }
 }

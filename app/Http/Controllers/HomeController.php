@@ -36,7 +36,7 @@ class HomeController extends Controller
         $produkUpdtd = Produk::orderBy('updated_at', 'desc')->paginate(8);
 
         if (Auth::guest()) {
-            $keranjangItems =  \Cart::session(auth()->guest())->getContent();
+            $keranjangItems = \Cart::session(auth()->guest())->getContent();
         } else {
             $keranjangItems = \Cart::session(auth()->id())->getContent();
         }
@@ -44,5 +44,10 @@ class HomeController extends Controller
         $categories = Category::whereNull('parent_id')->get();
 
         return view('home', ['freshProduk' => $produkFresh, 'firstProduk' => $produksFrst,'categories' => $categories, 'rndmProduk' => $produksRndm, 'updtdProduk' => $produkUpdtd], compact('keranjangItems'));
+    }
+
+    public function aboutus()
+    {
+        return view('aboutus');
     }
 }

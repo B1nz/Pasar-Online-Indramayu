@@ -24,6 +24,12 @@ Route::redirect('/dashboard', '/home');
 Auth::routes();
 
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
+Route::get('/aboutus', 'App\Http\Controllers\HomeController@aboutus')->name('aboutus');
+
+// Edit Account
+Route::get('/edit', 'App\Http\Controllers\Auth\EditController@index')->name('edit');
+
+Route::post('/edit/update', 'App\Http\Controllers\Auth\EditController@update')->name('edit.update');
 
 // Keranjang
 Route::group(['middleware' => 'auth'], function(){
@@ -48,26 +54,25 @@ Route::resource('orders', 'App\Http\Controllers\OrderController')->middleware('a
 // Toko
 Route::resource('toko', 'App\Http\Controllers\TokoController')->middleware('auth');
 
+// Pembelian
+Route::resource('pesanan', 'App\Http\Controllers\pelanggan\PesananController')->middleware('auth');
+
 // Produk
 Route::get('/produk/search', 'App\Http\Controllers\ProdukController@search')->name('produk.search');
 Route::get('/produk/show', 'App\Http\Controllers\ProdukController@show')->name('produk.show');
+Route::get('/produk/pihps', 'App\Http\Controllers\ProdukController@pangan')->name('produk.pihps');
 Route::resource('produk', 'App\Http\Controllers\ProdukController');
 
 // Pedagang
-Route::group(['prefix' => 'seller', 'middleware' => 'auth', 'as' => 'seller.', 'namespace' => 'App\Http\Controllers\Seller'], function() {
+Route::group(['prefix' => 'seller', 'middleware' => 'auth', 'as' => 'seller.', 'namespace' => 'App\Http\Controllers\Admin'], function() {
     Route::redirect('/', 'seller/orders');
     Route::resource('/orders', 'OrderController');
+    Route::get('orders/tolak/{suborder}', 'OrderController@markTolak')->name('order.tolak');
+    Route::get('orders/proses/{suborder}', 'OrderController@markProses')->name('order.proses');
     Route::get('orders/delivered/{suborder}', 'OrderController@markDelivered')->name('order.delivered');
 });
 
 // Voyager
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
-});
-
-// Test
-Route::get('/test', function () {
-    $o = Order::find(10);
-
-    dd($o->groupBy('toko_id'));
 });

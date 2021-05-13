@@ -28,9 +28,8 @@ class TokoController extends Controller
      */
     public function create()
     {
-        $keranjangItems = \Cart::session(auth()->id())->getContent();
 
-        return view('toko.create', compact('keranjangItems'));
+        return view('toko.create');
     }
 
     /**
@@ -56,7 +55,8 @@ class TokoController extends Controller
 
         Mail::to($admins)->send(new ShopActivationRequest($toko));
 
-        // return redirect()->route('home')->withMessage('Pengajuan Membuka Toko Terkirim!');
+        Alert::success('Pengajuan Berhasil!', 'Mohon tunggu anda akan mendapkan email saat toko anda sudah di konfirmasi');
+
         return redirect()->route('home')->with('msg','Pengajuan Membuka Toko Terkirim!');
 
     }

@@ -18,7 +18,7 @@ class CreateProduksTable extends Migration
             $table->unsignedBigInteger('toko_id')->nullable();
             $table->string('nama');
             $table->string('deskripsi');
-            $table->integer('jumlah');
+            $table->integer('jumlah')->nullable();
             $table->float('harga');
             $table->string('cover_img')->nullable();
             $table->timestamps();

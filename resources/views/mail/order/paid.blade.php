@@ -22,7 +22,7 @@
     </tbody>
 </table>
 
-<h1>Total : {{$order->grand_total}}</h1>
+<h1>Total : @currency($order->grand_total)</h1>
 
 
 Terimakasih,<br>

@@ -2,9 +2,7 @@
 
 @section('content')
 
-@include('layouts.line')
-
-    <div class="breadcrumb-area pt-205 pb-210" style="background-image: url(/assets/img/bg/breadcrumb.jpg)">
+    <div class="breadcrumb-area pt-205 pb-210" style="background-image: url(/assets/img/ban/ban-cr.png)">
         <div class="container">
             <div class="breadcrumb-content text-center">
                 <h2>Daftar Toko</h2>

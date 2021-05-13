@@ -3,8 +3,6 @@
 
 @section('content')
 
-@include('layouts.line')
-
 <div class="product-details ptb-100 pb-90">
     <div class="container">
         <div class="row">
@@ -34,34 +32,45 @@
                         </div>
 
                     </div>
-                    <div class="product-details-cati-tag mt-35">
+                    {{-- <div class="product-details-cati-tag mt-35">
+                        <ul><li class="categories-title">Kategori :</li></ul>
                         <ul>
-                            <li class="categories-title">kategori :</li>
-                            <li><a href="#">fashion</a></li>
-                            <li><a href="#">electronics</a></li>
-                            <li><a href="#">toys</a></li>
-                            <li><a href="#">food</a></li>
-                            <li><a href="#">jewellery</a></li>
+                            @foreach ($categories as $category)
+                                <li><a href="{{route('produk.index', ['category_id'=>$category->id])}}">{{$category->produk->name}}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                     <div class="product-details-cati-tag mtb-10">
+                        <ul><li class="categories-title">Tags :</li></ul>
                         <ul>
-                            <li class="categories-title">Tags :</li>
-                            <li><a href="#">fashion</a></li>
-                            <li><a href="#">electronics</a></li>
-                            <li><a href="#">toys</a></li>
-                            <li><a href="#">food</a></li>
-                            <li><a href="#">jewellery</a></li>
+                            @foreach ($categories as $category)
+                            @php
+                                $children = TCG\Voyager\Models\Category::where('parent_id', $category->id)->get();
+                            @endphp
+
+                            @foreach ($children as $child)
+                                <li><a href="{{route('produk.index', ['category_id'=>$child->id])}}">{{$child->name}}</a></li>
+
+                                @php
+                                    $grandchild = TCG\Voyager\Models\Category::where('parent_id', $child->id)->get();
+                                @endphp
+
+                                @foreach ($grandchild as $c)
+                                    <li><a href="{{route('produk.index', ['category_id'=>$c->id])}}">{{$c->name}}</a></li>
+                                @endforeach
+
+                            @endforeach
+                            @endforeach
                         </ul>
-                    </div>
-                    <br><br>
+                    </div> --}}
+                    <br><br><br><br>
 
                     @if (!empty($produk->toko->nama))
-                        <h3>Info Penjual</h3> <br><br>
-                        <h4>Nama Toko:</h4> <br>
-                        <h5>{{$produk->toko->nama}}</h5> <br> <br>
-                        <h4>Informasi Tentang Toko:</h4><br>
-                        <h5>{{$produk->toko->deskripsi}}</h5>
+                        <h3>Info Penjual</h3> <br>
+                        <h5>Nama Toko:</h5> <br>
+                        <h6>{{$produk->toko->nama}}</h6> <br> <br>
+                        <h5>Informasi Tentang Toko:</h5><br>
+                        <h6>{{$produk->toko->deskripsi}}</h6>
                     @else
                         <h5>-</h5>
                     @endif

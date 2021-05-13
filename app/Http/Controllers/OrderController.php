@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\OrderBerhasil;
 use App\Models\order;
+use App\Mail\OrderBerhasil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class OrderController extends Controller
 {
@@ -80,7 +81,9 @@ class OrderController extends Controller
 
         // Take user to thank you
 
-        return redirect()->route('home')->with('suksesMsg','Order Berhasil!');
+        Alert::success('Order Berhasil!', 'Pedagang akan segera memproses pesanan anda!');
+
+        return redirect()->route('home');
     }
 
     /**

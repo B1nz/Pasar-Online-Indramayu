@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produk;
+use App\Models\User;
 use Illuminate\Http\Request;
 use ReflectionFunctionAbstract;
 
@@ -54,7 +55,9 @@ class KeranjangController extends Controller
     {
         $keranjangItems = \Cart::session(auth()->id())->getContent();
 
-        return view('keranjang.checkout', compact('keranjangItems'));
+        $userData = User::where('id', auth()->id())->get();
+
+        return view('keranjang.checkout', compact('keranjangItems', 'userData'));
     }
 
 

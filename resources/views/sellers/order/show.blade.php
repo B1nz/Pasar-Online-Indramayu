@@ -1,13 +1,7 @@
-@extends('layouts.seller')
-
-
-@section('content')
-<h3>Seluruh Penjualan</h3>
-
-<table class="table">
-    <thead>
+<table class="table table-striped" style="padding-bottom: 50px">
+    <thead class="thead-dark">
         <tr>
-            <th>Nama</th>
+            <th>Nama Barang</th>
             <th>Jumlah</th>
             <th>Harga</th>
         </tr>
@@ -30,5 +24,3 @@
 
     </tbody>
 </table>
-
-@endsection

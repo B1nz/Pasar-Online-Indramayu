@@ -3,8 +3,6 @@
 
 @section('content')
 
-@include('layouts.line')
-
     <div class="checkout-area ptb-100">
         <div class="container">
             <div class="row">
@@ -14,22 +12,24 @@
                         <div class="checkbox-form">
                             <h3>Detail Pengiriman</h3>
                             <div class="row">
+
+                                @foreach ($userData as $ud)
                                 <div class="col-md-12">
                                     <div class="checkout-form-list">
                                         <label>Nama Penerima <span class="required">*</span></label>
-                                        <input type="text" name="nama_penerima" id="name" class="form-control" required autocomplete="name">
+                                        <input type="text" name="nama_penerima" id="name" class="form-control" required autocomplete="name" value={{$ud->name}}>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="checkout-form-list">
                                         <label>Alamat Penerima <span class="required">*</span></label>
-                                        <input type="text" name="alamat_penerima" id="" class="form-control" required autocomplete="address">
+                                        <input type="text" name="alamat_penerima" id="" class="form-control" required autocomplete="address" value={{$ud->alamat}}>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="checkout-form-list">
                                         <label>Telepon Penerima <span class="required">*</span></label>
-                                        <input type="number" name="telp_penerima" id="" class="form-control" required autocomplete="phone">
+                                        <input type="number" name="telp_penerima" id="" class="form-control" required autocomplete="phone" value={{$ud->no_hp}}>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -38,6 +38,8 @@
                                         <input type="text" name="keterangan" id="" class="form-control">
                                     </div>
                                 </div>
+                                @endforeach
+
                             </div>
                         </div>
                     </div>
@@ -87,7 +89,7 @@
                                         </div>
                                     </div>
                                     <div class="order-button-payment">
-                                        <input type="submit" value="Proses order" data-toggle="modal" data-target="#exampleModal"/>
+                                        <input type="submit" value="Proses order"/>
                                     </div>
                                 </div>
                             </div>
@@ -95,26 +97,6 @@
                     </div>
                 </form>
             </div>
-        </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Order Berhasil!</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-            <div class="modal-body">
-            ...
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-            </div>
-        </div>
         </div>
     </div>
 

@@ -3491,6 +3491,9 @@ a.banner-book-style-btn:hover {
 .categori-menu-wrapper2 {
     background-color: #070b21;
 }
+.categori-menu-wrapper69 {
+    background-color: #85bd02;
+}
 .categori-style-2 {
     width: 20%;
     float: left;
@@ -6401,7 +6404,7 @@ a.icon-cart-furniture.food-cart span {
 }
 
 .btn-hover-black::before {
-    background: #333 none repeat scroll 0 0;
+    background: rgb(168, 168, 168) none repeat scroll 0 0;
     bottom: 0;
     content: "";
     left: 0;

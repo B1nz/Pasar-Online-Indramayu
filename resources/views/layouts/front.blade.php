@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/img/favicon.png')}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/img/logo.png')}}">
 
     <!-- all css here -->
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
@@ -22,11 +22,23 @@
     <link rel="stylesheet" href="{{asset('assets/css/bundle.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
     @livewireStyles
 
     <script src="/assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 </head>
+
+@php
+    if (Auth::guest()) {
+        $keranjangItems = \Cart::session(auth()->guest())->getContent();
+    } else {
+        $keranjangItems = \Cart::session(auth()->id())->getContent();
+    }
+@endphp
 
 <body>
     <!--[if lt IE 8]>
@@ -42,11 +54,9 @@
                         <li><i class="pe-7s-cash"></i> <a href="{{ route('toko.create') }}">Mulai Berjualan!</a></li>
                         @else
                             @if (auth()->user()->role_id == '1')
-                            <li><i class="pe-7s-shopbag"></i> <a href="{{url('/seller/orders')}}">Masuk Sebagai Penjual</a></li>
-                            <li><i class="pe-7s-cash"></i> <a href="{{ route('toko.create') }}">Mulai Berjualan!</a></li>
+                            <li><i class="pe-7s-shopbag"></i> <a href="{{url('/admin')}}">Masuk Halaman Admin</a></li>
                             @elseif (auth()->user()->role_id == '3')
-                            <li><i class="pe-7s-shopbag"></i> <a href="{{url('/seller/orders')}}">Masuk Sebagai Penjual</a></li>
-                            <li><i class="pe-7s-cash"></i> <a href="{{ route('toko.create') }}">Mulai Berjualan!</a></li>
+                            <li><i class="pe-7s-shopbag"></i> <a href="{{url('/seller/orders')}}">Masuk Halaman Penjual</a></li>
                             @else
                             <li><i class="pe-7s-cash"></i> <a href="{{ route('toko.create') }}">Mulai Berjualan!</a></li>
                             @endif
@@ -78,16 +88,24 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
                                     @if (auth()->user()->role_id == '1')
-                                    <a class="dropdown-item " href="{{url('/admin')}}">
-                                        {{ __('Masuk Penjual') }}
+                                    <a class="dropdown-item " href="{{url('/seller/orders')}}">
+                                        {{ __('Halaman Penjual') }}
                                     </a>
                                     @elseif (auth()->user()->role_id == '3')
-                                    <a class="dropdown-item " href="{{url('/admin')}}">
-                                        {{ __('Masuk Penjual') }}
+                                    <a class="dropdown-item " href="{{url('/seller/orders')}}">
+                                        {{ __('Halaman Penjual') }}
                                     </a>
                                     @else
 
                                     @endif
+
+                                    <a class="dropdown-item " href="{{ route('pesanan.index') }}">
+                                        {{ __('Daftar Pesanan') }}
+                                    </a>
+
+                                    <a class="dropdown-item " href="{{ url('/edit') }}">
+                                        {{ __('Edit Akun') }}
+                                    </a>
 
                                     <a class="dropdown-item " href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
@@ -109,7 +127,7 @@
             <div class="header-bottom-wrapper pr-200 pl-200">
                 <div class="logo-3">
                     <a href="{{url('/')}}">
-                        <img src="{{asset('assets/img/logo/logo-11.png')}}" alt="">
+                        <img src="{{asset('assets/img/logo/logo.png')}}" alt="" style="max-width: 90px">
                     </a>
                 </div>
 
@@ -151,10 +169,7 @@
                                 </span>
                             </div> --}}
                             <div class="cart-title">
-                                <h5><a href="
-                                    {{-- {{route('produk.show', $produk)}} --}}
-                                    #
-                                    ">{{ $item->name }}</a></h5>
+                                <h5>{{ $item->name }}</h5>
                                 <span>@currency($item->price) x {{ $item->quantity }}</span>
                             </div>
                             <div class="cart-delete">
@@ -185,7 +200,31 @@
             </div>
         </div>
     </header>
-    <!-- header end -->
+    <!-- Navbar start -->
+    <div class="categori-menu-wrapper69 clearfix">
+        <div class="pl-200 pr-200">
+            <div class="categori-style-2">
+                <div class="category-heading-2">
+                    <h3 style="color: #85bd02">Kategori Produk</h3>
+                </div>
+            </div>
+            <div class="menu-style-4 menu-hover">
+                <nav>
+                    <ul>
+                        <li><a href="{{url('/home')}}">home </a>
+                        </li>
+                        <li><a href="{{route('produk.search')}}">semua produk <span class="sticker-new">hot</span></a>
+                        </li>
+                        <li><a href="{{ route('keranjang.index') }}">keranjang </a>
+                        </li>
+                        <li><a href="{{route('produk.pihps')}}">cek harga pangan  <span class="sticker-new">hot</span></a>
+                        </li>
+                        <li><a href="{{ url('/aboutus') }}">tentang kami</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
     @yield('content')
     <footer class="footer-area">
         <div class="footer-middle black-bg-2 pt-35 pb-40">
@@ -197,72 +236,34 @@
                             <div class="footer-info-wrapper-2">
                                 <div class="footer-address-electro">
                                     <div class="footer-info-icon2">
-                                        <span>Address:</span>
-                                    </div>
-                                    <div class="footer-info-content2">
-                                        <p>77 Seventh Streeth Banasree
-                                            <br>Road Rampura -2100 Dhaka</p>
-                                    </div>
-                                </div>
-                                <div class="footer-address-electro">
-                                    <div class="footer-info-icon2">
-                                        <span>Phone:</span>
-                                    </div>
-                                    <div class="footer-info-content2">
-                                        <p>+11 (019) 2518 4203
-                                            <br>+11 (251) 2223 3353</p>
-                                    </div>
-                                </div>
-                                <div class="footer-address-electro">
-                                    <div class="footer-info-icon2">
                                         <span>Email:</span>
                                     </div>
                                     <div class="footer-info-content2">
-                                        <p><a href="#">domain@mail.com</a>
-                                            <br><a href="#">company@domain.info</a></p>
+                                        <p><a href="#">Goldiansyah@protonmail.com</a>
+                                            <br><a href="#">Goldiansyah@gmail.com</a></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-xl-3">
+                    <div class="col-lg-4 col-md-6 col-xl-4">
                         <div class="footer-widget mb-40">
                             <h3 class="footer-widget-title-3">My Account</h3>
                             <div class="footer-widget-content-3">
                                 <ul>
-                                    <li><a href="login.html">Login Hare</a></li>
-                                    <li><a href="cart.html">Cart History</a></li>
-                                    <li><a href="checkout.html"> Payment History</a></li>
-                                    <li><a href="shop.html">Product Tracking</a></li>
-                                    <li><a href="register.html">Register</a></li>
+                                    <li><a href="{{ route('keranjang.index') }}">Keranjang</a></li>
+                                    <li><a href="{{ url('/pesanan') }}">Pembelian</a></li>
+                                    <li><a href="{{ url('/edit') }}">Edit Profil</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-6 col-xl-2">
+                    <div class="col-lg-4 col-md-6 col-xl-4">
                         <div class="footer-widget mb-40">
                             <h3 class="footer-widget-title-3">Information</h3>
                             <div class="footer-widget-content-3">
                                 <ul>
-                                    <li><a href="about-us.html">About Us</a></li>
-                                    <li><a href="#">Our Service</a></li>
-                                    <li><a href="#">Pricing Plan</a></li>
-                                    <li><a href="#"> Vendor Detail</a></li>
-                                    <li><a href="#">Affiliate</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-xl-3">
-                        <div class="footer-widget widget-right mb-40">
-                            <h3 class="footer-widget-title-3">Service</h3>
-                            <div class="footer-widget-content-3">
-                                <ul>
-                                    <li><a href="#">Product Service</a></li>
-                                    <li><a href="#">Payment Service</a></li>
-                                    <li><a href="#"> Discount Service</a></li>
-                                    <li><a href="#">Shopping Service</a></li>
-                                    <li><a href="#">Promotional Add</a></li>
+                                    <li><a href="{{ url('/aboutus') }}">Tentang Kami</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -274,15 +275,6 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-5">
-                        <div class="footer-menu">
-                            <nav>
-                                <ul>
-                                    <li><a href="#">Privacy Policy </a></li>
-                                    <li><a href="#"> Blog</a></li>
-                                    <li><a href="#">Help Center</a></li>
-                                </ul>
-                            </nav>
-                        </div>
                     </div>
                     <div class="col-lg-6 col-md-7">
                         <div class="copyright f-right mrg-5">
@@ -313,6 +305,13 @@
     <script src="assets/js/owl.carousel.min.js"></script>
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/main.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
     @livewireScripts
 </body>

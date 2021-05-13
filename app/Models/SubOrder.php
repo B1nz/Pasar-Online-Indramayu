@@ -19,4 +19,9 @@ class SubOrder extends Model
     {
         return $this->belongsTo(Order::class);
     }
+
+    public function toko()
+    {
+        return $this->belongsTo(Toko::class,'toko_id');
+    }
 }

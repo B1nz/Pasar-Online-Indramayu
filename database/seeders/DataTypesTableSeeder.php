@@ -172,14 +172,14 @@ class DataTypesTableSeeder extends Seeder
                 'display_name_plural' => 'Produks',
                 'icon' => 'voyager-bag',
                 'model_name' => 'App\\Models\\Produk',
-                'policy_name' => NULL,
-                'controller' => NULL,
+                'policy_name' => 'App\\Policies\\ProdukPolicy',
+                'controller' => 'App\\Http\\Controllers\\Admin\\ProdukController',
                 'description' => NULL,
                 'generate_permissions' => 1,
                 'server_side' => 0,
-                'details' => '{"order_column":null,"order_display_column":null,"order_direction":"asc","default_search_key":null}',
+                'details' => '{"order_column":null,"order_display_column":null,"order_direction":"asc","default_search_key":null,"scope":null}',
                 'created_at' => '2021-05-03 06:54:56',
-                'updated_at' => '2021-05-03 06:54:56',
+                'updated_at' => '2021-05-06 05:21:44',
             ),
         ));
         
