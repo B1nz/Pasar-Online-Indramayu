@@ -90,17 +90,4 @@
     </div>
 </div>
 
-<style>
-    #sidebar.fixed > div{position:fixed;}
-</style>
-
-<script>
-    var el = $('#sidebar'),
-    pos = el.position().top;
-
-    $(window).scroll(function() {
-        el.toggleClass('fixed', $(this).scrollTop() >= pos);
-    });
-</script>
-
 @endsection
