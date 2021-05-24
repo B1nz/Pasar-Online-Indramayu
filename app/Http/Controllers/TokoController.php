@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\ShopActivationRequest;
 use App\Models\Toko;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use PhpParser\Node\Expr\New_;
+use App\Mail\ShopActivationRequest;
+use Illuminate\Support\Facades\Mail;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class TokoController extends Controller
 {

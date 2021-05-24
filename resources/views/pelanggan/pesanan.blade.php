@@ -74,26 +74,26 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                    <h2 class="modal-title">Detail Barang Pesanan</h2>
+                        <h2 class="modal-title">Detail Barang Pesanan</h2>
                     </div>
                     <div class="modal-body">
-                    <table class="table table-striped" style="padding-bottom: 50px">
-                        <thead class="thead-dark">
-                        <tr>
-                            <th>Nama Barang</th>
-                            <th>Jumlah</th>
-                            <th>Harga</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach ($subOrder->items as $item)
+                        <table class="table table-striped" style="padding-bottom: 50px">
+                            <thead class="thead-dark">
                             <tr>
-                                <td scope="row">{{ $item->nama }}</td>
-                                <td>{{ $item->pivot->jumlah }}</td>
-                                <td>@currency($item->pivot->harga)</td>
+                                <th>Nama Barang</th>
+                                <th>Jumlah</th>
+                                <th>Harga</th>
                             </tr>
-                            @endforeach
-                        </tbody>
+                            </thead>
+                            <tbody>
+                                @foreach ($subOrder->items as $item)
+                                <tr>
+                                    <td scope="row">{{ $item->nama }}</td>
+                                    <td>{{ $item->pivot->jumlah }}</td>
+                                    <td>@currency($item->pivot->harga)</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
                         </table>
                     </div>
                     <div class="modal-footer">

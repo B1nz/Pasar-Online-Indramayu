@@ -63,17 +63,17 @@
                         <br>
                         @if($subOrder->status != 'proses' && $subOrder->status != 'selesai' && $subOrder->status != 'gagal')
 
-                            <a href=" {{route('seller.order.tolak', $subOrder)}} " class="btn btn-danger btn-sm">Tolak Pesanan</button>
+                            <a href=" {{route('seller-order.tolak', $subOrder)}} " class="btn btn-danger btn-sm">Tolak Pesanan</button>
                         @endif
 
                         @if($subOrder->status != 'proses' && $subOrder->status != 'selesai' && $subOrder->status != 'gagal')
 
-                            <a href=" {{route('seller.order.proses', $subOrder)}} " class="btn btn-info btn-sm">Proses Pesanan</button>
+                            <a href=" {{route('seller-order.proses', $subOrder)}} " class="btn btn-info btn-sm">Proses Pesanan</button>
                         @endif
 
                         @if($subOrder->status != 'selesai' && $subOrder->status != 'pending' && $subOrder->status != 'gagal')
 
-                            <a href=" {{route('seller.order.delivered')}} " class="btn btn-success btn-sm">Pesanan Selesai</button>
+                            <a href=" {{route('seller-order.delivered')}} " class="btn btn-success btn-sm">Pesanan Selesai</button>
                         @endif
                     </td>
 

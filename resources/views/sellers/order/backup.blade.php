@@ -1,10 +1,9 @@
-Order Index Ori
-
 @extends('layouts.order')
 
 
 @section('content')
 
+<div class="container-fluid ptb-100">
     <table class="table table-striped">
         <thead class="thead-dark">
             <tr>
@@ -13,7 +12,7 @@ Order Index Ori
                 <th>Status</th>
                 <th>Jumlah Item</th>
                 <th>Alamat Pengiriman</th>
-                <th>Detail</th>
+                <th>Detail Barang Pesanan</th>
             </tr>
         </thead>
         <tbody>
@@ -32,17 +31,17 @@ Order Index Ori
                         <br>
                         @if($subOrder->status != 'proses' && $subOrder->status != 'selesai' && $subOrder->status != 'gagal')
 
-                            <a href=" {{route('seller.order.tolak', $subOrder)}} " class="btn btn-danger btn-sm">Tolak Pesanan</button>
+                            <a href=" {{route('seller-order.tolak', $subOrder)}} " class="btn btn-danger btn-sm">Tolak Pesanan</button>
                         @endif
 
                         @if($subOrder->status != 'proses' && $subOrder->status != 'selesai' && $subOrder->status != 'gagal')
 
-                            <a href=" {{route('seller.order.proses', $subOrder)}} " class="btn btn-info btn-sm">Proses Pesanan</button>
+                            <a href=" {{route('seller-order.proses', $subOrder)}} " class="btn btn-info btn-sm">Proses Pesanan</button>
                         @endif
 
                         @if($subOrder->status != 'selesai' && $subOrder->status != 'pending' && $subOrder->status != 'gagal')
 
-                            <a href=" {{route('seller.order.delivered')}} " class="btn btn-success btn-sm">Pesanan Selesai</button>
+                            <a href=" {{route('seller-order.delivered')}} " class="btn btn-success btn-sm">Pesanan Selesai</button>
                         @endif
                     </td>
 
@@ -58,9 +57,7 @@ Order Index Ori
                     </td>
 
                     <td>
-                        {{-- <a name="" id="" class="btn btn-warning btn-sm" href="{{route('seller.orders.show', $subOrder)}}" role="button">Detail Pesanan</a> --}}
-
-                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#details-modal" data-order="{{ $subOrder->id }}">
+                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#details-modal-{{ $subOrder->id }}">
                             Detail Pesanan
                         </button>
                     </td>
@@ -73,44 +70,42 @@ Order Index Ori
 
         </tbody>
     </table>
-
-    <!-- Modal -->
-<div id="details-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="details-modal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h4 class="modal-title">Details</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body"></div>
-        </div>
-    </div>
 </div>
 
-<script>
-    // Script
-$('#details-modal').on('show.bs.modal', event => {
-    var order = $(event.relatedTarget).data('order');
-    modalBody = $(this).find('.modal-body');
-  // show loading spinner while waiting for ajax to be done
-    modalBody.html(`
-    <div class="text-center">
-        <div class="spinner-border" role="status">
-        <span class="sr-only">Loading...</span>
+@foreach ($orders as $subOrder)
+    <div id="details-modal-{{ $subOrder->id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="details-modal-{{ $subOrder->id }}" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h2 class="modal-title">Detail Barang Pesanan</h2>
+                </div>
+                <div class="modal-body">
+                <table class="table table-striped" style="padding-bottom: 50px">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>Nama Barang</th>
+                        <th>Jumlah</th>
+                        <th>Harga</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach ($subOrder->items as $item)
+                        <tr>
+                            <td scope="row">{{ $item->nama }}</td>
+                            <td>{{ $item->pivot->jumlah }}</td>
+                            <td>@currency($item->pivot->harga)</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Tutup</button>
+                </div>
+            </div>
         </div>
     </div>
-    `);
-
-    $.ajax({
-    url: `/orders/${order}`, // the url for your show method
-    method: 'get'
-    })
-    .done(view => modalBody.html(view));
-    .fail(error => console.error(error));
-});
-</script>
+@endforeach
 
 
 @endsection
