@@ -12,7 +12,7 @@
                             <thead>
                                 <tr>
                                     <th>hapus</th>
-                                    <th>gambar</th>
+                                    {{-- <th>gambar</th> --}}
                                     <th>produk</th>
                                     <th>harga</th>
                                     <th>jumlah</th>
@@ -25,7 +25,7 @@
                                     <td class="product-remove">
                                         <a href="{{ route('keranjang.destroy', $item['id'] )}}"><i class="pe-7s-close"></i></a>
                                     </td>
-                                    <td class="product-thumbnail">
+                                    {{-- <td class="product-thumbnail">
                                         <span>
                                             @if(!empty($item['cover_img']))
                                                 <img src="{{asset('storage/'.$item['cover_img'])}}" alt="">
@@ -33,7 +33,7 @@
                                                 <img src="assets/img/cart/1.jpg" alt="">
                                             @endif
                                         </span>
-                                    </td>
+                                    </td> --}}
                                     <td class="product-name"><a href="#">{{ $item['name'] }}</a></td>
                                     <td class="product-price-cart"><span class="amount">@currency($item['price'])</span></td>
                                     <td class="product-quantity">

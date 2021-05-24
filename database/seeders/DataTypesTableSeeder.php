@@ -161,7 +161,7 @@ class DataTypesTableSeeder extends Seeder
                 'server_side' => 0,
                 'details' => '{"order_column":null,"order_display_column":null,"order_direction":"asc","default_search_key":null,"scope":null}',
                 'created_at' => '2021-05-03 06:53:30',
-                'updated_at' => '2021-05-03 07:09:15',
+                'updated_at' => '2021-05-19 16:52:03',
             ),
             8 => 
             array (
@@ -179,7 +179,7 @@ class DataTypesTableSeeder extends Seeder
                 'server_side' => 0,
                 'details' => '{"order_column":null,"order_display_column":null,"order_direction":"asc","default_search_key":null,"scope":null}',
                 'created_at' => '2021-05-03 06:54:56',
-                'updated_at' => '2021-05-06 05:21:44',
+                'updated_at' => '2021-05-12 03:10:31',
             ),
         ));
         

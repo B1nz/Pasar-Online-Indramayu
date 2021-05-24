@@ -271,22 +271,6 @@
                 </div>
             </div>
         </div>
-        <div class="footer-bottom  black-bg pt-25 pb-30">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-5">
-                    </div>
-                    <div class="col-lg-6 col-md-7">
-                        <div class="copyright f-right mrg-5">
-                            <p>
-                                Copyright ©
-                                <a href="https://hastech.company/">HasTech</a> 2018 . All Right Reserved.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </footer>
 
 

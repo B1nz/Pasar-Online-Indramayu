@@ -235,7 +235,7 @@
                         </div>
                     </div>
                     <div class="product-fruit-content text-center">
-                        <h4><a href="{{route('produk.show', $pf)}}">{{$up->nama}}</a></h4>
+                        <h4><a href="{{route('produk.show', $up)}}">{{$up->nama}}</a></h4>
                         <span>@currency($up->harga)</span>
                     </div>
                 </div>

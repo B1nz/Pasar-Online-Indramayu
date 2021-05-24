@@ -6,6 +6,12 @@
     <div class="checkout-area ptb-100">
         <div class="container">
             <div class="row">
+                <div class="col-lg-12 col-md-12 col-12">
+                    <h4>Catatan :</h4>
+                    <p>● Pastikan alamat anda sudah benar</p>
+                    <p>● Jika anda ingin mengirim ke alamat dan penerima yang berbeda anda dapat merubah data pada kolom dibawah </p>
+                    <br><br>
+                </div>
                 <form action="{{route('orders.store')}}" class="row" method="POST">
                 @csrf
                     <div class="col-lg-6 col-md-12 col-12">
