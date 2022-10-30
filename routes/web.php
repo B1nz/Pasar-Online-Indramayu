@@ -25,6 +25,7 @@ Auth::routes();
 
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 Route::get('/aboutus', 'App\Http\Controllers\HomeController@aboutus')->name('aboutus');
+Route::get('/tutorial', 'App\Http\Controllers\HomeController@tutorial')->name('tutorial');
 
 // Edit Account
 Route::get('/edit', 'App\Http\Controllers\Auth\EditController@index')->name('edit');
@@ -64,7 +65,7 @@ Route::get('/produk/pihps', 'App\Http\Controllers\ProdukController@pangan')->nam
 Route::resource('produk', 'App\Http\Controllers\ProdukController');
 
 // Pedagang
-Route::group(['prefix' => 'seller', 'middleware' => 'auth', 'as' => 'seller-', 'namespace' => 'App\Http\Controllers\Admin'], function() {
+Route::group(['prefix' => 'seller', 'middleware' => 'auth', 'as' => 'seller-', 'namespace' => 'App\Http\Controllers\Seller'], function() {
     Route::redirect('/', 'seller/orders');
     Route::resource('/orders', 'OrderController');
     Route::get('orders/tolak/{suborder}', 'OrderController@markTolak')->name('order.tolak');

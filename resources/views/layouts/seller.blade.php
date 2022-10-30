@@ -42,7 +42,7 @@
 
                         @can('customer')
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('shops.create') }}">Open Your Shop</a>
+                                <a class="nav-link" href="{{ route('shops.create') }}">Mulai Berjualan</a>
                             </li>
                         @endcan
                     </ul>

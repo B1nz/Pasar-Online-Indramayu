@@ -25,6 +25,16 @@
                     </div>
                     <p>{!! $produk->deskripsi !!}</p>
 
+                    <br>
+
+                    @if (!empty($produk->updated_at))
+                        <span>Diupdate Pada : </span>
+                        <p>{{$produk->updated_at}}</p>
+                    @else
+                        <span>Ditambahkan Pada : </span>
+                        <p>{{$produk->created_at}}</p>
+                    @endif
+
                     <div class="quickview-plus-minus">
 
                         <div class="quickview-btn-cart">

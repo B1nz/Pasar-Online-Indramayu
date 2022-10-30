@@ -63,13 +63,13 @@
                 <ul>
                     <li><a href="{{url('/home')}}">home </a>
                     </li>
-                    <li><a href="{{route('produk.search')}}">semua produk <span class="sticker-new">hot</span></a>
+                    <li><a href="{{route('produk.search')}}">semua produk</a>
                     </li>
-                    <li><a href="{{ route('keranjang.index') }}">keranjang </a>
+                    <li><a href="{{ route('tutorial') }}">panduan belanja <span class="sticker-new">hot</span></a>
                     </li>
                     <li><a href="{{route('produk.pihps')}}">cek harga pangan  <span class="sticker-new">hot</span></a>
                     </li>
-                    <li><a href="{{ url('/aboutus') }}">tentang kami</a></li>
+                    <li><a href="{{ route('aboutus') }}">tentang kami</a></li>
                 </ul>
             </nav>
         </div>

@@ -3,9 +3,9 @@
 
 Berikut detail request toko,
 
-Nama Toko : {{$shop->nama}}
-Pemilik Toko : {{$shop->owner->nama}}
-Deskripsi Toko : {{$shop->deskripsi}}
+Nama Toko : {{$toko->nama}}
+Pemilik Toko : {{$toko->owner->nama}}
+Deskripsi Toko : {{$toko->deskripsi}}
 
 Toko baru menanti untuk kamu konfirmasi!, klik tombool berikut untuk mengkonfirmasi!
 

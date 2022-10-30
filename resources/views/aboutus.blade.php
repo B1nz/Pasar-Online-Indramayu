@@ -1,4 +1,4 @@
-@extends('layouts.front', ($keranjangItems = \Cart::session(auth()->id())->getContent()))
+@extends('layouts.front')
 
 @section('content')
 
