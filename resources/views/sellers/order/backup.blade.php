@@ -3,7 +3,7 @@
 
 @section('content')
 
-<div class="container-fluid ptb-100">
+<div class="container-fluid">
     <table class="table table-striped">
         <thead class="thead-dark">
             <tr>

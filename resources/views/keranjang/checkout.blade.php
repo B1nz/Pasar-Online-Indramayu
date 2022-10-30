@@ -23,13 +23,13 @@
                                 <div class="col-md-12">
                                     <div class="checkout-form-list">
                                         <label>Nama Penerima <span class="required">*</span></label>
-                                        <input type="text" name="nama_penerima" id="name" class="form-control" required autocomplete="name" value={{$ud->name}}>
+                                        <input type="text" name="nama_penerima" id="name" class="form-control" required autocomplete="name" value="{{$ud->name}}">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="checkout-form-list">
                                         <label>Alamat Penerima <span class="required">*</span></label>
-                                        <input type="text" name="alamat_penerima" id="" class="form-control" required autocomplete="address" value={{$ud->alamat}}>
+                                        <input type="text" name="alamat_penerima" id="" class="form-control" required autocomplete="address" value="{{$ud->alamat}}">
                                     </div>
                                 </div>
                                 <div class="col-md-12">

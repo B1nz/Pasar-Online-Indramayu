@@ -50,4 +50,9 @@ class HomeController extends Controller
     {
         return view('aboutus');
     }
+
+    public function tutorial()
+    {
+        return view('tutorial');
+    }
 }
